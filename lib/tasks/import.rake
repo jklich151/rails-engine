@@ -18,6 +18,7 @@ task :import => [:environment] do
   puts 'now importing merchants'
   desc 'Import merchant from csv file'
    file = 'db/data/merchants.csv'
+   Merchant.destroy_all
     CSV.foreach(file, headers: true) do |row|
       merchant_hash = row.to_hash
       merchant = Merchant.where(id: merchant_hash["id"])
@@ -33,6 +34,7 @@ ActiveRecord::Base.connection.execute("ALTER SEQUENCE merchants_id_seq RESTART W
   puts 'now importing items'
   desc 'Import item from csv file'
     file = 'db/data/items.csv'
+    Merchant.destroy_all
       CSV.foreach(file, headers: true) do |row|
         item_hash = row.to_hash
         item = Item.where(id: item_hash["id"])
