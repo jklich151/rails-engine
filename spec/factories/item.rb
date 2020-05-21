@@ -1,9 +1,8 @@
 FactoryBot.define do
   factory :item do
-    merchant_1 = Merchant.create!(name: "Merchant 1")
-    name { "Item 3" }
-    description { "An Item" }
-    unit_price { 7 }
-    merchant_id { merchant_1.id }
+    name { Faker::TvShows::Friends.character }
+    description { Faker::TvShows::Friends.quote}
+    unit_price { rand(1.00..99.99).round(2) }
+    merchant
   end
 end
